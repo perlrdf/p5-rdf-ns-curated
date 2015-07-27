@@ -1,0 +1,19 @@
+# This file contains general metadata about the project.
+
+@prefix : <http://usefulinc.com/ns/doap#>.
+
+`RDF-NS-Curated`
+	:programming-language "Perl" ;
+	:shortdesc            "=A cureted set of RDF prefixes";
+	:homepage             <https://metacpan.org/release/RDF-NS-Curated>;
+	:download-page        <https://metacpan.org/release/RDF-NS-Curated>;
+	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue=RDF-NS-Curated>;
+#	:repository           [ a :GitRepository; :browse <https://github.com/kjetilk/p5-rdf-ns-curated> ];
+	:created              2015-07-27;
+	:license              <http://dev.perl.org/licenses/>;
+	:maintainer           cpan:KJETILK;
+	:developer            cpan:KJETILK.
+
+<http://dev.perl.org/licenses/>
+	dc:title  "the same terms as the perl 5 programming language system itself".
+
