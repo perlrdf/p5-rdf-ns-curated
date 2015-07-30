@@ -4,11 +4,14 @@
 
 `RDF-NS-Curated`
 	:programming-language "Perl" ;
-	:shortdesc            "=A cureted set of RDF prefixes";
+	:shortdesc            "A cureted set of RDF prefixes";
 	:homepage             <https://metacpan.org/release/RDF-NS-Curated>;
 	:download-page        <https://metacpan.org/release/RDF-NS-Curated>;
 	:bug-database         <https://github.com/kjetilk/p5-rdf-ns-curated/issues>;
-	:repository           [ a :GitRepository; :browse <https://github.com/kjetilk/p5-rdf-ns-curated> ];
+	:repository           [ a :GitRepository; 
+			      	:browse <https://github.com/kjetilk/p5-rdf-ns-curated> ;
+                                prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fkjetilk%2Fp5-rdf-ns-curated&serialization=PROV-O#>
+			      ];
 	:created              2015-07-27;
 	:license              <http://dev.perl.org/licenses/>;
 	:maintainer           cpan:KJETILK;
