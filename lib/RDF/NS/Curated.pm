@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-RDF::NS::Curated - =A cureted set of RDF prefixes
+RDF::NS::Curated - A cureted set of RDF prefixes
 
 =head1 SYNOPSIS
 
@@ -26,7 +26,7 @@ RDF::NS::Curated - =A cureted set of RDF prefixes
 =head1 BUGS
 
 Please report any bugs to
-L<http://rt.cpan.org/Dist/Display.html?Queue=RDF-NS-Curated>.
+L<https://github.com/kjetilk/p5-rdf-ns-curated/issues>.
 
 =head1 SEE ALSO
 
