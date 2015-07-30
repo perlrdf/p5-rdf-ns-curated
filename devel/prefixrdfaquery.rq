@@ -1,0 +1,10 @@
+prefix rdfa: <http://www.w3.org/ns/rdfa#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+
+SELECT DISTINCT ?prefix ?namespace ?definedby WHERE {
+       [] a  rdfa:PrefixMapping;
+       	  rdfa:prefix ?prefix ;
+	  rdfa:uri ?namespace ;
+	  rdfs:isDefinedBy ?definedby .
+}

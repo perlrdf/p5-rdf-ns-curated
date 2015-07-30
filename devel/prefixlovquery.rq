@@ -1,0 +1,14 @@
+PREFIX vann:<http://purl.org/vocab/vann/>
+PREFIX voaf:<http://purl.org/vocommons/voaf#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?prefix ?namespace ?definedby ?reusedata ?reusevocab WHERE {
+ 	GRAPH <http://lov.okfn.org/dataset/lov>{
+ 	 	?namespace vann:preferredNamespacePrefix ?prefix ;
+	                   voaf:reusedByDatasets ?reusedata ;
+		           voaf:reusedByVocabularies ?reusevocab .
+            OPTIONAL {
+	    	?namespace rdfs:isDefinedBy ?definedby ;
+	    }
+        }
+} ORDER BY DESC (?reusedata * ?reusevocab) LIMIT 20
