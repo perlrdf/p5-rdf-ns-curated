@@ -1,6 +1,7 @@
 # This file contains general metadata about the project.
 
 @prefix : <http://usefulinc.com/ns/doap#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
 
 `RDF-NS-Curated`
 	:programming-language "Perl" ;
