@@ -10,12 +10,11 @@ our $VERSION   = '0.001';
 use Text::CSV;
 use File::ShareDir qw(module_file);
 use List::MoreUtils qw(zip);
-use Data::Dumper;
 
 sub new {
   my $class = shift;
-  my $pfile = '/home/kjetil/dev/p5-rdf-ns-curated/share/prefixes.csv';
-#  my $pfile = module_file('RDF::NS::Curated', 'prefixes.csv') || die 'Could not find the CSV file containing prefixes';
+#  my $pfile = '/home/kjetil/dev/p5-rdf-ns-curated/share/prefixes.csv';
+  my $pfile = module_file('RDF::NS::Curated', 'prefixes.csv') || die 'Could not find the CSV file containing prefixes';
   my $csv = Text::CSV->new or die "Cannot use CSV module to parse prefix file: ".Text::CSV->error_diag ();
   open my $fh, "<:encoding(utf8)", $pfile or die "Could not open prefix file: $!";
   my %prefix_ns;
