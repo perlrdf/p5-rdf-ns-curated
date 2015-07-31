@@ -32,6 +32,23 @@ sub new {
   return bless($self, $class);
 }
 
+sub uri {
+  my $self = shift;
+  my $prefix = shift;
+  return $self->{prefix_namespace}->{$prefix};
+}
+
+sub prefix {
+  my $self = shift;
+  my $namespace = shift;
+  my $ns_prefix = $self->{namespace_prefix};
+  unless ($ns_prefix) {
+	 $ns_prefix = {reverse %{$self->{prefix_namespace}}};
+	 $self->{namespace_prefix} = $ns_prefix;
+  }
+  return $ns_prefix->{$namespace};
+}
+		
 1;
 
 __END__
