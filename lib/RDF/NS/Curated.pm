@@ -48,7 +48,23 @@ sub prefix {
   }
   return $ns_prefix->{$namespace};
 }
-		
+
+sub definedby {
+  my ($self, $key, $value) = @_;
+  if ($key eq 'prefix') {
+	 my $prefix_def = $self->{namespace_definedby};
+	 unless ($prefix_def) {
+		# TODO: Doesn't work, since the hash hasn't kept the ordering, of course
+		my @prefixes = keys(%{$self->{prefix_namespace}});
+		$prefix_def = {zip @prefixes, @{$self->{definedby}}};
+		$self->{namespace_definedby} = $prefix_def;
+	 }
+	 return $prefix_def->{$value};
+  }
+
+  warn "Argument is a key-value where the key is either 'prefix' or 'uri'";
+}
+
 1;
 
 __END__
