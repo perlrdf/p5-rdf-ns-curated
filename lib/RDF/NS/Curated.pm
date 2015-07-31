@@ -42,7 +42,7 @@ __END__
 
 =head1 NAME
 
-RDF::NS::Curated - A cureted set of RDF prefixes
+RDF::NS::Curated - A curated set of RDF prefixes
 
 =head1 SYNOPSIS
 

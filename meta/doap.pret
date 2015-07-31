@@ -4,7 +4,7 @@
 
 `RDF-NS-Curated`
 	:programming-language "Perl" ;
-	:shortdesc            "A cureted set of RDF prefixes";
+	:shortdesc            "A curated set of RDF prefixes";
 	:homepage             <https://metacpan.org/release/RDF-NS-Curated>;
 	:download-page        <https://metacpan.org/release/RDF-NS-Curated>;
 	:bug-database         <https://github.com/kjetilk/p5-rdf-ns-curated/issues>;
