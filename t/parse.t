@@ -34,6 +34,7 @@ is($ns->uri('foaf'), 'http://xmlns.com/foaf/0.1/', 'FOAF spec URI is OK');
 is($ns->uri('omfgthisisnotaprefix'), undef, 'Non-existent prefix OK');
 is($ns->prefix('http://schema.org/'), 'schema', 'Schema.org prefix OK');
 is($ns->prefix('http://clearly.invalid/'), undef, 'Non-existent URI OK');
+is($ns->prefix('http://creativecommons.org/ns#'), 'cc', 'CC prefix OK, test the cache');
 is($ns->definedby(prefix => 'rif'), 'http://www.w3.org/TR/2010/NOTE-rif-overview-20100622/', 'RIF spec link from prefix OK');
 is($ns->definedby(uri => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'), 'http://www.w3.org/TR/2004/REC-rdf-mt-20040210/', 'RDF spec from URI ok');
 is($ns->definedby(prefix => 'omfgthisisnotaprefix'), undef, 'spec link from non-existent prefix OK');
