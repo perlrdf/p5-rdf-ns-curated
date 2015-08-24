@@ -123,6 +123,8 @@ This will return the URI (as a plain string) of the supplied prefix.
 
 This will return the prefix corresponding to the supplied URI string.
 
+=back
+
 =head1 BUGS
 
 Please report any bugs to
