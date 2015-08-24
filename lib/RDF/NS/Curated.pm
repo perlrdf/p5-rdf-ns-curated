@@ -7,8 +7,6 @@ package RDF::NS::Curated;
 our $AUTHORITY = 'cpan:KJETILK';
 our $VERSION   = '0.001';
 
-use List::MoreUtils qw(zip);
-
 sub new {
   my $class = shift;
   my %prefix_ns = (
