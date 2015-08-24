@@ -7,26 +7,64 @@ package RDF::NS::Curated;
 our $AUTHORITY = 'cpan:KJETILK';
 our $VERSION   = '0.001';
 
-use Text::CSV;
-use File::ShareDir qw(module_file);
 use List::MoreUtils qw(zip);
 
 sub new {
   my $class = shift;
-#  my $pfile = '/home/kjetil/dev/p5-rdf-ns-curated/share/prefixes.csv';
-  my $pfile = module_file('RDF::NS::Curated', 'prefixes.csv') || die 'Could not find the CSV file containing prefixes';
-  my $csv = Text::CSV->new or die "Cannot use CSV module to parse prefix file: ".Text::CSV->error_diag ();
-  open my $fh, "<:encoding(utf8)", $pfile or die "Could not open prefix file: $!";
-  my %prefix_ns;
-  my @definedby;
-  while ( my $row = $csv->getline( $fh ) ) {
-	 next if ($row->[0] eq 'prefix');
-	 $prefix_ns{$row->[0]} = $row->[1];
-	 push(@definedby, $row->[2]);
-  }
+  my %prefix_ns = (
+						 rdfs => 'http://www.w3.org/2000/01/rdf-schema#',
+						 vcard => 'http://www.w3.org/2006/vcard/ns#',
+						 ical => 'http://www.w3.org/2002/12/cal/icaltzd#',
+						 rdfa => 'http://www.w3.org/ns/rdfa#',
+						 grddl => 'http://www.w3.org/2003/g/data-view#',
+						 qb => 'http://purl.org/linked-data/cube#',
+						 wdrs => 'http://www.w3.org/2007/05/powder-s#',
+						 cc => 'http://creativecommons.org/ns#',
+						 dc11 => 'http://purl.org/dc/elements/1.1/ => ',
+						 rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+						 xml => 'http://www.w3.org/XML/1998/namespace',
+						 gr => 'http://purl.org/goodrelations/v1#',
+						 og => 'http://ogp.me/ns#',
+						 rr => 'http://www.w3.org/ns/r2rml#',
+						 ma => 'http://www.w3.org/ns/ma-ont#',
+						 v => 'http://rdf.data-vocabulary.org/#',
+						 owl => 'http://www.w3.org/2002/07/owl#',
+						 foaf => 'http://xmlns.com/foaf/0.1/',
+						 rif => 'http://www.w3.org/2007/rif#',
+						 sd => 'http://www.w3.org/ns/sparql-service-description#',
+						 schema => 'http://schema.org/',
+						 org => 'http://www.w3.org/ns/org#',
+						 skosxl => 'http://www.w3.org/2008/05/skos-xl#',
+						 xsd => 'http://www.w3.org/2001/XMLSchema#',
+						 dc => 'http://purl.org/dc/terms/',
+						 sioc => 'http://rdfs.org/sioc/ns#',
+						 prov => 'http://www.w3.org/ns/prov#',
+						 skos => 'http://www.w3.org/2004/02/skos/core#',
+						 dcat => 'http://www.w3.org/ns/dcat#',
+						 rev => 'http://purl.org/stuff/rev#',
+						 wdr => 'http://www.w3.org/2007/05/powder#',
+						 void => 'http://rdfs.org/ns/void#',
+						 ctag => 'http://commontag.org/ns#',
+						 xhv => 'http://www.w3.org/1999/xhtml/vocab#',
+						 yago => 'http://yago-knowledge.org/resource/',
+						 dbo => 'http://dbpedia.org/ontology/',
+						 dbp => 'http://dbpedia.org/property/',
+						 vann => 'http://purl.org/vocab/vann/',
+						 pos => 'http://www.w3.org/2003/01/geo/wgs84_pos#',
+						 time => 'http://www.w3.org/2006/time#',
+						 bibo => 'http://purl.org/ontology/bibo/',
+						 vs => 'http://www.w3.org/2003/06/sw-vocab-status/ns#',
+						 doap => 'http://usefulinc.com/ns/doap#',
+						 dctype => 'http://purl.org/dc/dcmitype/',
+						 gn => 'http://www.geonames.org/ontology#',
+						 frbr => 'http://purl.org/vocab/frbr/core#',
+						 adms => 'http://www.w3.org/ns/adms#',
+						 event => 'http://purl.org/NET/c4dm/event.owl#',
+						 rel => 'http://purl.org/vocab/relationship/'
+						);
+
   my $self = {
-				  prefix_namespace => \%prefix_ns,
-				  definedby => \@definedby,
+				  prefix_namespace => \%prefix_ns
 				 };
   return bless($self, $class);
 }
@@ -46,22 +84,6 @@ sub prefix {
 	 $self->{namespace_prefix} = $ns_prefix;
   }
   return $ns_prefix->{$namespace};
-}
-
-sub definedby {
-  my ($self, $key, $value) = @_;
-  if ($key eq 'prefix') {
-	 my $prefix_def = $self->{namespace_definedby};
-	 unless ($prefix_def) {
-		# TODO: Doesn't work, since the hash hasn't kept the ordering, of course
-		my @prefixes = keys(%{$self->{prefix_namespace}});
-		$prefix_def = {zip @prefixes, @{$self->{definedby}}};
-		$self->{namespace_definedby} = $prefix_def;
-	 }
-	 return $prefix_def->{$value};
-  }
-
-  warn "Argument is a key-value where the key is either 'prefix' or 'uri'";
 }
 
 1;
