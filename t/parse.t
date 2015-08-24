@@ -4,7 +4,7 @@
 
 =head1 PURPOSE
 
-Test that RDF::NS::Curated compiles.
+Test that RDF::NS::Curated basic functionality
 
 =head1 AUTHOR
 
