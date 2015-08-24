@@ -100,7 +100,30 @@ RDF::NS::Curated - A curated set of RDF prefixes
 
 =head1 SYNOPSIS
 
+  my $ns = RDF::NS::Curated->new;
+  print $ns->uri('foaf'); # prints http://xmlns.com/foaf/0.1/
+  print $ns->prefix('http://schema.org/'); # prints schema
+
 =head1 DESCRIPTION
+
+This contains a list of 49 prefix and URI pairs that are commonly used
+in RDF. The intention is that prefixes in this list can be safely used
+in code that has a long lifetime. The list has been derived mostly
+from W3C standards documents, but also some popularity lists.
+
+It is intended to be used with e.g. L<URI::NamespaceMap>.
+
+Apart from the constructor, which takes no arguments, it has only two methods:
+
+=over
+
+=item C<< uri($prefix) >>
+
+This will return the URI (as a plain string) of the supplied prefix.
+
+=item C<< prefix($uri) >>
+
+This will return the prefix corresponding to the supplied URI string.
 
 =head1 BUGS
 
@@ -108,6 +131,8 @@ Please report any bugs to
 L<https://github.com/kjetilk/p5-rdf-ns-curated/issues>.
 
 =head1 SEE ALSO
+
+L<RDF::NS>, L<XML::CommonNS>, L<RDF::Prefixes>.
 
 =head1 AUTHOR
 
