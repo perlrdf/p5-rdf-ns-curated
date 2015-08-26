@@ -117,11 +117,11 @@ Apart from the constructor, which takes no arguments, it has only two methods:
 
 =item C<< uri($prefix) >>
 
-This will return the URI (as a plain string) of the supplied prefix.
+This will return the URI (as a plain string) of the supplied prefix or C<undef> if it is not registered.
 
 =item C<< prefix($uri) >>
 
-This will return the prefix corresponding to the supplied URI string.
+This will return the prefix corresponding to the supplied URI string or C<undef> if it is not registered.
 
 =back
 
