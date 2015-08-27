@@ -107,7 +107,8 @@ RDF::NS::Curated - A curated set of RDF prefixes
 This contains a list of 49 prefix and URI pairs that are commonly used
 in RDF. The intention is that prefixes in this list can be safely used
 in code that has a long lifetime. The list has been derived mostly
-from W3C standards documents, but also some popularity lists.
+from W3C standards documents, but also some popularity lists. See the
+source code of this package for the full list.
 
 It is intended to be used with e.g. L<URI::NamespaceMap>.
 
