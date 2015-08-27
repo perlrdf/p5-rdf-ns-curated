@@ -5,7 +5,7 @@ use warnings;
 package RDF::NS::Curated;
 
 our $AUTHORITY = 'cpan:KJETILK';
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 sub new {
   my $class = shift;
