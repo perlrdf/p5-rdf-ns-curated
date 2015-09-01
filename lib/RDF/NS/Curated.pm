@@ -112,9 +112,13 @@ source code of this package for the full list.
 
 It is intended to be used with e.g. L<URI::NamespaceMap>.
 
-Apart from the constructor, which takes no arguments, it has only two methods:
+=head2 Methods
 
 =over
+
+=item C<< new >>
+
+Constructor. Takes no arguments.
 
 =item C<< uri($prefix) >>
 
