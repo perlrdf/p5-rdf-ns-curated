@@ -1,6 +1,10 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 0.002 cpan:KJETILK`
+	issued  2015-09-01;
+	label   "Trivial bug fixes".
+
 `RDF-NS-Curated 0.001 cpan:KJETILK`
-	issued  2015-07-27;
+	issued  2015-0-27;
 	label   "Initial release".
 
