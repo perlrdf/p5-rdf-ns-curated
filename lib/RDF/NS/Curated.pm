@@ -1,8 +1,8 @@
+package RDF::NS::Curated;
+
 use 5.006000;
 use strict;
 use warnings;
-
-package RDF::NS::Curated;
 
 our $AUTHORITY = 'cpan:KJETILK';
 our $VERSION   = '0.002';
