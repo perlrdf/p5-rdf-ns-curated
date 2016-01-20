@@ -58,7 +58,8 @@ sub new {
 						 frbr => 'http://purl.org/vocab/frbr/core#',
 						 adms => 'http://www.w3.org/ns/adms#',
 						 event => 'http://purl.org/NET/c4dm/event.owl#',
-						 rel => 'http://purl.org/vocab/relationship/'
+						 rel => 'http://purl.org/vocab/relationship/',
+						 hydra => 'http://www.w3.org/ns/hydra/core#'
 						);
 
   my $self = {
