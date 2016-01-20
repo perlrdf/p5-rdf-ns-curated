@@ -35,5 +35,15 @@ is($ns->prefix('http://schema.org/'), 'schema', 'Schema.org prefix OK');
 is($ns->prefix('http://clearly.invalid/'), undef, 'Non-existent URI OK');
 is($ns->prefix('http://creativecommons.org/ns#'), 'cc', 'CC prefix OK, test the cache');
 
+is($ns->qname('http://www.w3.org/ns/rdfa#term'), 'rdfa:term', 'OK qname for rdfa:term');
+my @got = $ns->qname('http://purl.org/dc/terms/name');
+#use Data::Dumper;
+#warn Dumper(\@got);
+my @expected = ('dc','name');
+is_deeply(\@got, \@expected, 'OK qname for rdfa and term in list context');
+
+is($ns->qname('http://clearly.invalid/vocab#term'), undef, 'OK when non-existing URI');
+is(($ns->qname('http://clearly.invalid/vocab#term')), undef, 'OK in list context for non-existing URI');
+
 done_testing;
 
