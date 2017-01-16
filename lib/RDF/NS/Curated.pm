@@ -11,6 +11,7 @@ sub new {
   my $class = shift;
   my %prefix_ns = (
 						 adms => 'http://www.w3.org/ns/adms#',
+						 as => 'https://www.w3.org/ns/activitystreams#',
 						 bibo => 'http://purl.org/ontology/bibo/',
 						 cc => 'http://creativecommons.org/ns#',	
 						 ctag => 'http://commontag.org/ns#',
@@ -21,6 +22,9 @@ sub new {
 						 dcat => 'http://www.w3.org/ns/dcat#',
 						 dctype => 'http://purl.org/dc/dcmitype/',
 						 doap => 'http://usefulinc.com/ns/doap#',
+						 dqv => 'http://www.w3.org/ns/dqv#',
+						 duv => 'https://www.w3.org/TR/vocab-duv/',
+						 earl => 'http://www.w3.org/ns/earl#',
 						 event => 'http://purl.org/NET/c4dm/event.owl#',
 						 foaf => 'http://xmlns.com/foaf/0.1/',
 						 frbr => 'http://purl.org/vocab/frbr/core#',
@@ -29,7 +33,10 @@ sub new {
 						 grddl => 'http://www.w3.org/2003/g/data-view#',
 						 hydra => 'http://www.w3.org/ns/hydra/core#',
 						 ical => 'http://www.w3.org/2002/12/cal/icaltzd#',
+						 ldp => 'http://www.w3.org/ns/ldp#',
 						 ma => 'http://www.w3.org/ns/ma-ont#',
+						 oa => 'http://www.w3.org/ns/oa#',
+						 odrl => 'http://www.w3.org/ns/odrl/2/',
 						 og => 'http://ogp.me/ns#',
 						 org => 'http://www.w3.org/ns/org#',
 						 owl => 'http://www.w3.org/2002/07/owl#',
@@ -48,6 +55,7 @@ sub new {
 						 sioc => 'http://rdfs.org/sioc/ns#',
 						 skos => 'http://www.w3.org/2004/02/skos/core#',
 						 skosxl => 'http://www.w3.org/2008/05/skos-xl#',
+						 ssn => 'http://www.w3.org/ns/ssn/',
 						 time => 'http://www.w3.org/2006/time#',
 						 v => 'http://rdf.data-vocabulary.org/#',
 						 vann => 'http://purl.org/vocab/vann/',
@@ -105,7 +113,7 @@ RDF::NS::Curated - A curated set of RDF prefixes
 
 =head1 DESCRIPTION
 
-This contains a list of 50 prefix and URI pairs that are commonly used
+This contains a list of 58 prefix and URI pairs that are commonly used
 in RDF. The intention is that prefixes in this list can be safely used
 in code that has a long lifetime. The list has been derived mostly
 from W3C standards documents, but also some popularity lists. See the
