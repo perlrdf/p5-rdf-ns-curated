@@ -13,7 +13,7 @@ sub new {
 						 adms => 'http://www.w3.org/ns/adms#',
 						 as => 'https://www.w3.org/ns/activitystreams#',
 						 bibo => 'http://purl.org/ontology/bibo/',
-						 cc => 'http://creativecommons.org/ns#',	
+						 cc => 'http://creativecommons.org/ns#',
 						 ctag => 'http://commontag.org/ns#',
 						 dbo => 'http://dbpedia.org/ontology/',
 						 dbp => 'http://dbpedia.org/property/',
