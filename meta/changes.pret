@@ -1,5 +1,9 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 0.003 cpan:KJETILK`
+	issued  2017-01-16;
+	label   "Add more prefixes.".
+
 `RDF-NS-Curated 0.002 cpan:KJETILK`
 	issued  2015-09-01;
 	label   "Trivial bug fixes".
