@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 our $AUTHORITY = 'cpan:KJETILK';
-our $VERSION   = '0.003';
+our $VERSION   = '0.004';
 
 sub new {
   my $class = shift;
@@ -23,7 +23,6 @@ sub new {
 						 dctype => 'http://purl.org/dc/dcmitype/',
 						 doap => 'http://usefulinc.com/ns/doap#',
 						 dqv => 'http://www.w3.org/ns/dqv#',
-						 duv => 'https://www.w3.org/TR/vocab-duv/',
 						 earl => 'http://www.w3.org/ns/earl#',
 						 event => 'http://purl.org/NET/c4dm/event.owl#',
 						 foaf => 'http://xmlns.com/foaf/0.1/',
@@ -113,7 +112,7 @@ RDF::NS::Curated - A curated set of RDF prefixes
 
 =head1 DESCRIPTION
 
-This contains a list of 58 prefix and URI pairs that are commonly used
+This contains a list of 57 prefix and URI pairs that are commonly used
 in RDF. The intention is that prefixes in this list can be safely used
 in code that has a long lifetime. The list has been derived mostly
 from W3C standards documents, but also some popularity lists. See the
