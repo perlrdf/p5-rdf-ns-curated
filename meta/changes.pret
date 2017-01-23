@@ -1,5 +1,9 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 0.005 cpan:KJETILK`
+	issued  2017-01-23;
+	label   "Correct duv prefix.".
+
 `RDF-NS-Curated 0.004 cpan:KJETILK`
 	issued  2017-01-23;
 	label   "Remove duv prefix, spec unreliable.".
