@@ -1,5 +1,13 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 0.006_01 cpan:KJETILK`
+	issued  2018-01-25;
+	changeset [
+	item [ label "Fix a typo bug in dc11 URI."@en ;
+               a dcs:Bugfix] ;
+	item [ label "Add an each_map method."@en ; a dcs:Addition ] ;
+	] .
+
 `RDF-NS-Curated 0.005 cpan:KJETILK`
 	issued  2017-01-23;
 	label   "Correct duv prefix.".
