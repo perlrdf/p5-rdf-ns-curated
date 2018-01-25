@@ -93,6 +93,11 @@ sub prefix {
   return $ns_prefix->{$namespace};
 }
 
+sub all {
+  my $self = shift;
+  return %prefix_ns;
+}
+
 1;
 
 __END__
@@ -136,6 +141,10 @@ This will return the URI (as a plain string) of the supplied prefix or C<undef> 
 =item C<< prefix($uri) >>
 
 This will return the prefix corresponding to the supplied URI string or C<undef> if it is not registered.
+
+=item C<< all >>
+
+This will return a hash with all prefix and URI pairs.
 
 =back
 
