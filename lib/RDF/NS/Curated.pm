@@ -18,7 +18,7 @@ sub new {
 						 dbo => 'http://dbpedia.org/ontology/',
 						 dbp => 'http://dbpedia.org/property/',
 						 dc => 'http://purl.org/dc/terms/',
-						 dc11 => 'http://purl.org/dc/elements/1.1/ => ',
+						 dc11 => 'http://purl.org/dc/elements/1.1/',
 						 dcat => 'http://www.w3.org/ns/dcat#',
 						 dctype => 'http://purl.org/dc/dcmitype/',
 						 doap => 'http://usefulinc.com/ns/doap#',
@@ -95,7 +95,7 @@ sub prefix {
 
 sub all {
   my $self = shift;
-  return %prefix_ns;
+  return $self->{prefix_namespace};
 }
 
 1;
@@ -144,7 +144,7 @@ This will return the prefix corresponding to the supplied URI string or C<undef>
 
 =item C<< all >>
 
-This will return a hash with all prefix and URI pairs.
+This will return a hashref with all prefix and URI pairs.
 
 =back
 
