@@ -23,7 +23,7 @@ sub new {
 						 dctype => 'http://purl.org/dc/dcmitype/',
 						 doap => 'http://usefulinc.com/ns/doap#',
 						 dqv => 'http://www.w3.org/ns/dqv#',
-						 duv => 'http://www.w3.org/ns/duv#',
+						 duv => 'https://www.w3.org/TR/vocab-duv#',
 						 earl => 'http://www.w3.org/ns/earl#',
 						 event => 'http://purl.org/NET/c4dm/event.owl#',
 						 foaf => 'http://xmlns.com/foaf/0.1/',
