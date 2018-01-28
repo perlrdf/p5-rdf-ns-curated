@@ -14,6 +14,7 @@ sub new {
 						 as => 'https://www.w3.org/ns/activitystreams#',
 						 bibo => 'http://purl.org/ontology/bibo/',
 						 cc => 'http://creativecommons.org/ns#',
+						 csvw => 'http://www.w3.org/ns/csvw#',
 						 ctag => 'http://commontag.org/ns#',
 						 dbo => 'http://dbpedia.org/ontology/',
 						 dbp => 'http://dbpedia.org/property/',
