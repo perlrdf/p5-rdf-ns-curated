@@ -56,6 +56,7 @@ sub new {
 						 sioc => 'http://rdfs.org/sioc/ns#',
 						 skos => 'http://www.w3.org/2004/02/skos/core#',
 						 skosxl => 'http://www.w3.org/2008/05/skos-xl#',
+						 sosa => 'http://www.w3.org/ns/sosa/',
 						 ssn => 'http://www.w3.org/ns/ssn/',
 						 time => 'http://www.w3.org/2006/time#',
 						 v => 'http://rdf.data-vocabulary.org/#',
