@@ -33,8 +33,13 @@ BEGIN {
   use_ok('RDF::Trine::Parser') or BAIL_OUT "RDF::Trine::Parser must be installed for these tests";
 }
 
+# These are prefixes we want to ignore
+my @blacklist = qw(dcterms);
+
+
 use Test::Exception;
 use RDF::Trine qw(iri variable statement);
+use List::Util qw(any);
 
 my $cur = RDF::NS::Curated->new;
 
@@ -70,11 +75,15 @@ ok($bind->peek, 'There are results');
 note 'Checking all mappings';
 
 while (my $row = $bind->next) {
-  subtest "Testing for $row->{'desc'}" => sub {
-	 my $prefix = $cur->prefix($row->{'uri'}->value);
-	 ok(defined($prefix), 'Found namespace URI ' . $row->{'uri'}->as_string);
-	 is($prefix, $row->{'prefix'}->literal_value, 'Found prefix ' . $row->{'prefix'}->literal_value);
-  };
+  if (any {$_ eq $row->{'prefix'}->literal_value} @blacklist) {
+	 note "Skipping for $row->{'desc'}";
+  } else {
+    subtest "Testing for $row->{'desc'}" => sub {
+		my $prefix = $cur->prefix($row->{'uri'}->value);
+		ok(defined($prefix), 'Found namespace URI ' . $row->{'uri'}->as_string);
+		is($prefix, $row->{'prefix'}->literal_value, 'Found prefix ' . $row->{'prefix'}->literal_value);
+	 };
+  }
 }
 
 done_testing;
