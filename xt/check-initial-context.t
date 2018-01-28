@@ -30,33 +30,52 @@ use Test::More;
 
 BEGIN {
   use_ok('RDF::NS::Curated');
-  use_ok('RDF::TrineX::Parser::RDFa') or BAIL_OUT "RDF::RDFa::Parser must be installed for these tests";
+  use_ok('RDF::Trine::Parser') or BAIL_OUT "RDF::Trine::Parser must be installed for these tests";
 }
 
-use Test::WWW::Mechanize;
 use Test::Exception;
+use RDF::Trine qw(iri variable statement);
 
-my $mech = Test::WWW::Mechanize->new;
+my $cur = RDF::NS::Curated->new;
 
-my $page = 'https://www.w3.org/2011/rdfa-context/rdfa-1.1';
+my $page = 'https://www.w3.org/2011/rdfa-context/rdfa-1.1.ttl';
 note "Get and check the document";
-$mech->get_ok($page);
-$mech->title_like(qr/Initial Context/);
-#print $mech->content;
-$mech->content_like(qr/HTML\+RDFa 1.1/);
 
-note "Parsing the RDFa content";
-my $parser = RDF::TrineX::Parser::RDFa->new(
-														  flavour        => 'html5',
-														  version        => '1.1',
-														  role_attr      => 1,
-														  longdesc_attr  => 1,
-														  cite_attr      => 1,
-														 );
 
 my $model = RDF::Trine::Model->temporary_model;
 
-lives_ok { $parser->parse_into_model($page, $mech->content, $model) } 'Parsing the RDFa';
+my $parser     = RDF::Trine::Parser->new( 'turtle' );
+
+lives_ok { $parser->parse_url_into_model($page, $model) } 'Parsing the RDF';
+
+cmp_ok($model->size, '>', 5, 'Got some RDF from the document');
+
+my $bind = $model->get_pattern(RDF::Trine::Pattern->new(statement(variable('id'),
+																						iri($cur->uri('rdf').'type'),
+																						iri($cur->uri('rdfa').'PrefixMapping')),
+																		  statement(variable('id'),
+																		  				iri($cur->uri('rdfa').'prefix'),
+																		  				variable('prefix')),
+																		  statement(variable('id'),
+																		  				iri($cur->uri('rdfa').'uri'),
+																		  				variable('uri')),
+																		  statement(variable('id'),
+																						iri($cur->uri('dc').'description'),
+																						variable('desc'))
+																		 ));
+isa_ok($bind, 'RDF::Trine::Iterator::Bindings');
+
+ok($bind->peek, 'There are results');
+
+note 'Checking all mappings';
+
+while (my $row = $bind->next) {
+  subtest "Testing for $row->{'desc'}" => sub {
+	 my $prefix = $cur->prefix($row->{'uri'}->value);
+	 ok(defined($prefix), 'Found namespace URI ' . $row->{'uri'}->as_string);
+	 is($prefix, $row->{'prefix'}->literal_value, 'Found prefix ' . $row->{'prefix'}->literal_value);
+  };
+}
 
 done_testing;
 
