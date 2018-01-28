@@ -8,5 +8,6 @@
 	:develop-recommendation [ :on "Dist::Inkt 0.001"^^:CpanId ];
 	:develop-recommendation [ :on "RDF::Trine"^^:CpanId ];
 	:develop-recommendation [ :on "Test::Exception"^^:CpanId ];
+	:develop-recommendation [ :on "List::Util 1.43"^^:CpanId ];
 	.
 
