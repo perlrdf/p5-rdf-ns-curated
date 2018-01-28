@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 our $AUTHORITY = 'cpan:KJETILK';
-our $VERSION   = '0.006_01';
+our $VERSION   = '0.006_02';
 
 sub new {
   my $class = shift;
