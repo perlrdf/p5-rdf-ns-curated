@@ -120,7 +120,7 @@ RDF::NS::Curated - A curated set of RDF prefixes
 
 =head1 DESCRIPTION
 
-This contains a list of 58 prefix and URI pairs that are commonly used
+This contains a list of 60 prefix and URI pairs that are commonly used
 in RDF. The intention is that prefixes in this list can be safely used
 in code that has a long lifetime. The list has been derived mostly
 from W3C standards documents, but also some popularity lists. See the
