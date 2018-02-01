@@ -75,15 +75,12 @@ ok($bind->peek, 'There are results');
 note 'Checking all mappings';
 
 while (my $row = $bind->next) {
-  if (any {$_ eq $row->{'prefix'}->literal_value} @blacklist) {
-	 note "Skipping for $row->{'desc'}";
-  } else {
-    subtest "Testing for $row->{'desc'}" => sub {
-		my $prefix = $cur->prefix($row->{'uri'}->value);
-		ok(defined($prefix), 'Found namespace URI ' . $row->{'uri'}->as_string);
-		is($prefix, $row->{'prefix'}->literal_value, 'Found prefix ' . $row->{'prefix'}->literal_value);
-	 };
-  }
+  subtest "Testing for $row->{'desc'}" => sub {
+	 plan skip_all => $row->{'desc'} . ' is blacklisted, skipping' if (any {$_ eq $row->{'prefix'}->literal_value} @blacklist);
+	 my $prefix = $cur->prefix($row->{'uri'}->value);
+	 ok(defined($prefix), 'Found namespace URI ' . $row->{'uri'}->as_string);
+	 is($prefix, $row->{'prefix'}->literal_value, 'Found prefix ' . $row->{'prefix'}->literal_value);
+  };
 }
 
 done_testing;
