@@ -1,7 +1,7 @@
 # This file acts as the project's changelog.
 
-`RDF-NS-Curated 0.006_02 cpan:KJETILK`
-	issued  2018-01-28;
+`RDF-NS-Curated 0.100 cpan:KJETILK`
+	issued  2018-02-05;
 	changeset [
 	item [ label "Fix a typo bug in dc11 URI."@en ;
                a dcs:Bugfix] ;
@@ -9,14 +9,6 @@
  	item [ label "Added sosa prefix."@en ; a dcs:Addition ] ;
 	item [ label "Add an all method."@en ; a dcs:Addition ] ;
 	item [ label "Add author test to check the RDFa Initial Context."@en ; a dcs:Addition ] ;
-	] .
-
-`RDF-NS-Curated 0.006_01 cpan:KJETILK`
-	issued  2018-01-25;
-	changeset [
-	item [ label "Fix a typo bug in dc11 URI."@en ;
-               a dcs:Bugfix] ;
-	item [ label "Add an all method."@en ; a dcs:Addition ] ;
 	] .
 
 `RDF-NS-Curated 0.005 cpan:KJETILK`
