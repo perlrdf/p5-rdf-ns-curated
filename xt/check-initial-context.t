@@ -34,7 +34,7 @@ BEGIN {
 }
 
 # These are prefixes we want to ignore
-my @blacklist = qw(dcterms);
+my @blacklist = qw(dcterms duv);
 
 
 use Test::Exception;
