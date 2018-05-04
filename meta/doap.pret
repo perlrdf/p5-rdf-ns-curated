@@ -15,6 +15,7 @@
 			      ];
 	:created              2015-07-27;
 	:license              <http://dev.perl.org/licenses/>;
+        :support-forum        <irc://irc.perl.org/#perlrdf> ;
 	:maintainer           cpan:KJETILK;
 	:developer            cpan:KJETILK.
 

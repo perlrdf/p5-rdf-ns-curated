@@ -1,5 +1,28 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 0.100 cpan:KJETILK`
+	issued  2018-02-05;
+	changeset [
+	item [ label "Fix a typo bug in dc11 URI."@en ;
+               a dcs:Bugfix] ;
+	item [ label "Added csvw prefix."@en ; a dcs:Addition ] ;
+ 	item [ label "Added sosa prefix."@en ; a dcs:Addition ] ;
+	item [ label "Add an all method."@en ; a dcs:Addition ] ;
+	item [ label "Add author test to check the RDFa Initial Context."@en ; a dcs:Addition ] ;
+	] .
+
+`RDF-NS-Curated 0.005 cpan:KJETILK`
+	issued  2017-01-23;
+	label   "Correct duv prefix.".
+
+`RDF-NS-Curated 0.004 cpan:KJETILK`
+	issued  2017-01-23;
+	label   "Remove duv prefix, spec unreliable.".
+
+`RDF-NS-Curated 0.003 cpan:KJETILK`
+	issued  2017-01-16;
+	label   "Add more prefixes.".
+
 `RDF-NS-Curated 0.002 cpan:KJETILK`
 	issued  2015-09-01;
 	label   "Trivial bug fixes".
