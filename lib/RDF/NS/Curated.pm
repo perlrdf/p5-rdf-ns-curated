@@ -197,7 +197,9 @@ L<RDF::NS>, L<XML::CommonNS>, L<RDF::Prefixes>.
 
 Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
 
+=head1 CONTRIBUTORS
 
+Harald Jörg
 
 
 =head1 COPYRIGHT AND LICENCE
