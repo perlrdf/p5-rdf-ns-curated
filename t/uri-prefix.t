@@ -39,8 +39,6 @@ is($ns->qname('http://www.w3.org/ns/rdfa#term'), 'rdfa:term', 'OK qname for rdfa
 is($ns->qname('http://www.w3.org/ns/rdfa#term'), 'rdfa:term', 'Check reset: still OK for rdfa:term');
 
 my @got = $ns->qname('http://purl.org/dc/terms/name');
-#use Data::Dumper;
-#warn Dumper(\@got);
 my @expected = ('dc','name');
 is_deeply(\@got, \@expected, 'OK qname for dc and name in list context');
 
