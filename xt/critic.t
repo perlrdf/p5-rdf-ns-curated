@@ -1,8 +1,5 @@
 use Test::Perl::Critic(-exclude => [
-												'RequireFinalReturn',
-											   'ProhibitUnusedPrivateSubroutines',
 											   'RequireExtendedFormatting',
-											   'ProhibitExcessComplexity',
 												'ProhibitPackageVars',
 												'ProhibitComplexRegexes',
 												'ProhibitAugmentedAssignmentInDeclaration',
