@@ -111,7 +111,7 @@ sub qname {
 	  if($uri =~ m/^$namespace(${r_PN_LOCAL})$/) {
 		  $ln = $1;
 		  $pr = $prefix;
-          my $n = scalar keys (%{$self->{prefix_namespace}}); # reset iterator
+		  my $n = scalar keys (%{$self->{prefix_namespace}}); # reset iterator
 		  last;
 	  }
   }
