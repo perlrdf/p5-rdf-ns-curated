@@ -3,6 +3,9 @@ use Test::Perl::Critic(-exclude => [
 											   'ProhibitUnusedPrivateSubroutines',
 											   'RequireExtendedFormatting',
 											   'ProhibitExcessComplexity',
+												'ProhibitPackageVars',
+												'ProhibitComplexRegexes',
+												'ProhibitAugmentedAssignmentInDeclaration',
 											  ],
 							  -severity => 3);
 all_critic_ok();

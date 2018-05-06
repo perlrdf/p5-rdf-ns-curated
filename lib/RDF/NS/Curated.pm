@@ -115,7 +115,7 @@ sub qname {
 		  last;
 	  }
   }
-  return undef unless defined($ln);
+  return unless defined($ln);
   return wantarray ? ($pr, $ln) : "$pr:$ln";
 }
 
