@@ -168,6 +168,16 @@ This will return the URI (as a plain string) of the supplied prefix or C<undef> 
 
 This will return the prefix corresponding to the supplied URI string or C<undef> if it is not registered.
 
+=item C<< qname($uri) >>
+
+This will return the qualified name corresponding to the supplied URI
+string or C<undef> if it is not registered. In scalar context, it will
+return the prefix and local name with a colon, and list context, a
+two-element array containing prefix and local name.
+
+For example C<http://purl.org/dc/terms/name> will return C<dc:name> in
+scalar context and C<('dc', 'name')> in list context.
+
 =item C<< all >>
 
 This will return a hashref with all prefix and URI pairs.
@@ -186,6 +196,9 @@ L<RDF::NS>, L<XML::CommonNS>, L<RDF::Prefixes>.
 =head1 AUTHOR
 
 Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
+
+
+
 
 =head1 COPYRIGHT AND LICENCE
 
