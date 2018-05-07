@@ -10,3 +10,4 @@ cpan:KJETILK
 	owl:sameAs  <http://www.kjetil.kjernsmo.net/foaf#me> , result:user-Kjetil-Kjernsmo ;
 	:mbox  <mailto:kjetilk@cpan.org>.
 
+result:user-Harald-Jörg :name  "Harald Jörg";
