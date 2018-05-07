@@ -1,7 +1,7 @@
 # This file acts as the project's changelog.
 
-`RDF-NS-Curated 0.900_01 cpan:KJETILK`
-	issued  2018-05-06;
+`RDF-NS-Curated 1.000 cpan:KJETILK`
+	issued  2018-05-07;
 	changeset [
 		item [ label "Added qname method. Many thanks to Harald Jörg for a bugfix in my implementation."@en ; a dcs:Addition ] 
 	] .
