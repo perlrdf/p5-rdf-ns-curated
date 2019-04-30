@@ -1,5 +1,11 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 1.002 cpan:KJETILK`
+	issued  2019-04-30;
+	changeset [
+		item [ label "Added deps prefixes."@en ; a dcs:Addition ] 
+	] .
+
 `RDF-NS-Curated 1.001 cpan:KJETILK`
 	issued  2018-11-01;
 	changeset [
