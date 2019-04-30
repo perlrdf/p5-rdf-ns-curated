@@ -23,6 +23,7 @@ sub new {
 						 dc11 => 'http://purl.org/dc/elements/1.1/',
 						 dcat => 'http://www.w3.org/ns/dcat#',
 						 dctype => 'http://purl.org/dc/dcmitype/',
+						 deps => 'http://ontologi.es/doap-deps#',
 						 doap => 'http://usefulinc.com/ns/doap#',
 						 dqv => 'http://www.w3.org/ns/dqv#',
 						 duv => 'http://www.w3.org/ns/duv#',
