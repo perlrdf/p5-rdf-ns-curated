@@ -47,8 +47,12 @@ jobs:
         id: min-perl
         run: |
           eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-          perl -Mversion -e '
+          perl -Mversion -MList::Util=max -e '
                 my $v = version->parse( $ARGV[0] );
+                # ExtUtils::MakeMaker  : "5.006001"
+                # CPAN::Meta           : "5.008001"
+                my $min_from_toolchain = version->parse("5.008001");
+                $v = max( $v, $min_from_toolchain );
                 my $dotted = $v->normal;
                 $dotted =~ s/^v//;
                 print "::set-output name=min-perl-version::$dotted\n"' \
@@ -96,6 +100,7 @@ jobs:
 
       - name: Install Perl deps
         run: |
+          cpanm --notest ExtUtils::MakeMaker~6.31 CPAN::Meta
           cpanm --notest --installdeps .
 
       - name: Run tests
