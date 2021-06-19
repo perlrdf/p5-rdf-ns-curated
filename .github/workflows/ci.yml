@@ -13,6 +13,8 @@ jobs:
       DIST_INKT_PROFILE: "Dist::Inkt::Profile::KJETILK"
     name: Make distribution
     runs-on: ubuntu-latest
+    outputs:
+      min-perl-version: ${{ steps.min-perl.outputs.min-perl-version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -40,6 +42,17 @@ jobs:
         run: |
           eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
           distinkt-dist --TRAVIS --targetdir=build-dir
+      - name: Find min Perl version
+        shell: bash
+        id: min-perl
+        run: |
+          eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+          perl -Mversion -e '
+                my $v = version->parse( $ARGV[0] );
+                my $dotted = $v->normal;
+                $dotted =~ s/^v//;
+                print "::set-output name=min-perl-version::$dotted\n"' \
+            $( jq -r '.prereqs.runtime.requires.perl' < build-dir/META.json  )
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -58,6 +71,7 @@ jobs:
           - { os: 'ubuntu-latest', perl: "5.20" }
           - { os: 'ubuntu-latest', perl: "5.30" }
           - { os: 'ubuntu-latest', perl: "5.32" }
+          - { os: 'ubuntu-latest', perl: "${{ needs.dist.outputs.min-perl-version  }}" }
           - { os: 'ubuntu-latest', perl: "latest" }
     name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
 
