@@ -5,10 +5,63 @@ on:
   push:
     branches:
       - '*'
+    tags-ignore:
+      - '*'
   pull_request:
+  create:
+
+env:
+  IRC_CHANNEL: '#perlrdf'
+  IRC_SERVER: 'irc.perl.org'
+  IRC_PORT: '6667'
+  IRC_NICKNAME: 'perlrdf-commits'
+  IRC_GITHUB_REPO: 'perlrdf/p5-rdf-ns-curated'
 
 jobs:
+  notify:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    if: ${{ always() }}
+    steps:
+      - name: irc push
+        uses: Gottox/irc-message-action@v1.3
+        if: ${{ github.event_name == 'push' && github.repository == 'perlrdf/p5-rdf-ns-curated' }}
+        with:
+          channel: ${{ env.IRC_CHANNEL }}
+          server: ${{ env.IRC_SERVER }}
+          port: ${{ env.IRC_PORT }}
+          nickname: ${{ env.IRC_NICKNAME }}
+          tls: false
+          notice: true
+          message: |
+            ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
+            ${{ join(github.event.commits.*.message, ', ') }}
+      - name: irc pull request
+        uses: Gottox/irc-message-action@v1.3
+        if: ${{ github.event_name == 'pull_request' && github.repository == 'perlrdf/p5-rdf-ns-curated' }}
+        with:
+          channel: ${{ env.IRC_CHANNEL }}
+          server: ${{ env.IRC_SERVER }}
+          port: ${{ env.IRC_PORT }}
+          nickname: ${{ env.IRC_NICKNAME }}
+          tls: false
+          notice: true
+          message: |
+            ${{ github.actor }} ${{ github.event.action }} PR «${{ github.event.pull_request.title }}» ${{ github.event.pull_request.html_url }}
+      - name: irc tag created
+        uses: Gottox/irc-message-action@v1.3
+        if: ${{ github.event_name == 'create' && github.event.ref_type == 'tag' && github.repository == 'perlrdf/p5-rdf-ns-curated' }}
+        with:
+          channel: ${{ env.IRC_CHANNEL }}
+          server: ${{ env.IRC_SERVER }}
+          port: ${{ env.IRC_PORT }}
+          nickname: ${{ env.IRC_NICKNAME }}
+          tls: false
+          notice: true
+          message: |
+            ${{ github.actor }} tagged ${{ github.repository }} ${{ github.event.ref }}
   dist:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     env:
       DIST_INKT_PROFILE: "Dist::Inkt::Profile::KJETILK"
     name: Make distribution
@@ -63,7 +116,7 @@ jobs:
           name: dist
           path: ./build-dir
   test:
-    needs: dist
+    needs: [ 'dist', 'notify' ]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -106,3 +159,38 @@ jobs:
       - name: Run tests
         run: |
           cpanm --verbose --test-only .
+  build-status:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    if: ${{ ( github.event_name == 'push' || github.event_name == 'pull_request' ) && ( success() || failure() ) && github.repository == 'perlrdf/p5-rdf-ns-curated' }}
+    needs: test
+    steps:
+      - name: Prepare message
+        run: |
+          echo "GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
+      - name: IRC build success
+        uses: Gottox/irc-message-action@v1.3
+        if: ${{ ! contains(needs.*.result, 'failure') && ! contains(needs.*.result, 'cancelled') }}
+        with:
+          channel: ${{ env.IRC_CHANNEL }}
+          server: ${{ env.IRC_SERVER }}
+          port: ${{ env.IRC_PORT }}
+          nickname: ${{ env.IRC_NICKNAME }}
+          tls: false
+          notice: true
+          message: |
+            Build status: All builds succeeded [${{ github.event_name }}]: ${{ env.GITHUB_WORKFLOW_URL }}
+            @ ${{ github.sha }} | ${{ github.event.commits[0].author.name }} | «${{ github.event.commits[0].message }}»
+      - name: IRC build failure
+        uses: Gottox/irc-message-action@v1.3
+        if: ${{ contains(needs.*.result, 'failure') }}
+        with:
+          channel: ${{ env.IRC_CHANNEL }}
+          server: ${{ env.IRC_SERVER }}
+          port: ${{ env.IRC_PORT }}
+          nickname: ${{ env.IRC_NICKNAME }}
+          tls: false
+          notice: true
+          message: |
+            Build status: Some builds failed [${{ github.event_name }}]: ${{ env.GITHUB_WORKFLOW_URL }}
+            @ ${{ github.sha }} | ${{ github.event.commits[0].author.name }} | «${{ github.event.commits[0].message }}»
