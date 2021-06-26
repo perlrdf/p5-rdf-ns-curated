@@ -51,7 +51,7 @@ It is intended to be used with e.g. [URI::NamespaceMap](https://metacpan.org/pod
 # BUGS
 
 Please report any bugs to
-[https://github.com/kjetilk/p5-rdf-ns-curated/issues](https://github.com/kjetilk/p5-rdf-ns-curated/issues).
+[https://github.com/perlrdf/p5-rdf-ns-curated/issues](https://github.com/kjetilk/p5-rdf-ns-curated/issues).
 
 # SEE ALSO
 

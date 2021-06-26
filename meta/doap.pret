@@ -8,16 +8,16 @@
 	:shortdesc            "A curated set of RDF prefixes";
 	:homepage             <https://metacpan.org/release/RDF-NS-Curated>;
 	:download-page        <https://metacpan.org/release/RDF-NS-Curated>;
-	:bug-database         <https://github.com/kjetilk/p5-rdf-ns-curated/issues>;
+	:bug-database         <https://github.com/perlrdf/p5-rdf-ns-curated/issues>;
 	:repository           [ a :GitRepository; 
-			      	:browse <https://github.com/kjetilk/p5-rdf-ns-curated> ;
-                                prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fkjetilk%2Fp5-rdf-ns-curated&serialization=PROV-O#>
+			      	:browse <https://github.com/perlrdf/p5-rdf-ns-curated> ;
+                                prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fperlrdf%2Fp5-rdf-ns-curated&serialization=PROV-O#>
 			      ];
 	:created              2015-07-27;
 	:license              <http://dev.perl.org/licenses/>;
         :support-forum        <irc://irc.perl.org/#perlrdf> ;
 	:maintainer           cpan:KJETILK;
 	:developer            cpan:KJETILK;
-	:helper 	      <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fkjetilk%2Fp5-rdf-ns-curated&serialization=PROV-O#user-Harald-Jörg>.
+	:helper 	      <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fperlrdf%2Fp5-rdf-ns-curated&serialization=PROV-O#user-Harald-Jörg>.
 
 

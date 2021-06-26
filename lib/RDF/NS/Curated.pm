@@ -190,7 +190,7 @@ This will return a hashref with all prefix and URI pairs.
 =head1 BUGS
 
 Please report any bugs to
-L<https://github.com/kjetilk/p5-rdf-ns-curated/issues>.
+L<https://github.com/perlrdf/p5-rdf-ns-curated/issues>.
 
 =head1 SEE ALSO
 
