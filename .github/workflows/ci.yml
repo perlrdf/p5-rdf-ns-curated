@@ -10,81 +10,28 @@ on:
   pull_request:
   create:
 
-env:
-  IRC_CHANNEL: '#perlrdf'
-  IRC_SERVER: 'irc.perl.org'
-  IRC_PORT: '6667'
-  IRC_NICKNAME: 'perlrdf-commits'
-  IRC_REPO_OWNER: 'perlrdf'
-
 jobs:
   notify:
     runs-on: ubuntu-latest
     continue-on-error: true
     if: ${{ always() }}
     steps:
-      - uses: PDLPorters/devops/github-actions/irc-notifications@master
+      - uses: perlrdf/devops/github-actions/irc-notifications@main
         with:
           target-notifications: true
-          repository_owner: ${{ env.IRC_REPO_OWNER }}
-          irc-channel: ${{ env.IRC_CHANNEL }}
-          irc-server: ${{ env.IRC_SERVER }}
-          irc-port: ${{ env.IRC_PORT }}
-          irc-nickname: ${{ env.IRC_NICKNAME }}
   dist:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    env:
-      DIST_INKT_PROFILE: "Dist::Inkt::Profile::KJETILK"
     name: Make distribution
     runs-on: ubuntu-latest
     outputs:
-      min-perl-version: ${{ steps.min-perl.outputs.min-perl-version }}
+      min-perl-version: ${{ steps.build-dist.outputs.min-perl-version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Cache ~/perl5
-        uses: actions/cache@v2
+        uses: actions/checkout@v3
+      - id: build-dist
+        uses: perlrdf/devops/github-actions/build-dist@main
         with:
-          key: ${{ runner.os }}-dist-locallib
-          path: ~/perl5
-      - name: Perl version
-        run: |
-          perl -v
-      - name: Install cpanm
-        run: |
-          curl -L https://cpanmin.us | perl - --sudo App::cpanminus
-      - name: Install local::lib
-        run: |
-          cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-      - name: Install Dist::Inkt
-        shell: bash
-        run: |
-          eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-          cpanm -n ExtUtils::MakeMaker~6.31 Dist::Inkt "$DIST_INKT_PROFILE"
-      - name: Make distribution
-        shell: bash
-        run: |
-          eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-          distinkt-dist --TRAVIS --targetdir=build-dir
-      - name: Find min Perl version
-        shell: bash
-        id: min-perl
-        run: |
-          eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
-          perl -Mversion -MList::Util=max -e '
-                my $v = version->parse( $ARGV[0] );
-                # ExtUtils::MakeMaker  : "5.006001"
-                # CPAN::Meta           : "5.008001"
-                my $min_from_toolchain = version->parse("5.008001");
-                $v = max( $v, $min_from_toolchain );
-                my $dotted = $v->normal;
-                print "::set-output name=min-perl-version::$dotted\n"' \
-            $( jq -r '.prereqs.runtime.requires.perl' < build-dir/META.json  )
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: ./build-dir
+          dist-perl-deps-develop: Test::Signature Test::Perl::Critic Test::Pod::Coverage Test::Pod
   test:
     needs: [ 'dist', 'notify' ]
     runs-on: ${{ matrix.os }}
@@ -93,18 +40,17 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
         perl: ['5']
         include:
-          - { os: 'ubuntu-latest', perl: "5.14" }
-          - { os: 'ubuntu-latest', perl: "5.16" }
-          - { os: 'ubuntu-latest', perl: "5.20" }
-          - { os: 'ubuntu-latest', perl: "5.30" }
           - { os: 'ubuntu-latest', perl: "5.32" }
+          - { os: 'ubuntu-latest', perl: "5.30" }
+          - { os: 'ubuntu-latest', perl: "5.20" }
+          - { os: 'ubuntu-latest', perl: "5.16" }
+          - { os: 'ubuntu-latest', perl: "5.14" }
           - { os: 'ubuntu-latest', perl: "${{ needs.dist.outputs.min-perl-version  }}" }
-          - { os: 'ubuntu-latest', perl: "latest" }
     name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
 
     steps:
       - name: Get dist artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: dist
 
@@ -123,7 +69,6 @@ jobs:
 
       - name: Install Perl deps
         run: |
-          cpanm --notest ExtUtils::MakeMaker~6.31 CPAN::Meta
           cpanm --notest --installdeps .
 
       - name: Run tests
@@ -135,12 +80,7 @@ jobs:
     if: ${{ always() }}
     needs: test
     steps:
-      - uses: PDLPorters/devops/github-actions/irc-notifications@master
+      - uses: perlrdf/devops/github-actions/irc-notifications@main
         with:
           target-build-status: true
           needs: ${{ toJSON(needs) }}
-          repository_owner: ${{ env.IRC_REPO_OWNER }}
-          irc-channel: ${{ env.IRC_CHANNEL }}
-          irc-server: ${{ env.IRC_SERVER }}
-          irc-port: ${{ env.IRC_PORT }}
-          irc-nickname: ${{ env.IRC_NICKNAME }}
