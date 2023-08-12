@@ -36,6 +36,7 @@ sub new {
 						 grddl => 'http://www.w3.org/2003/g/data-view#',
 						 hydra => 'http://www.w3.org/ns/hydra/core#',
 						 ical => 'http://www.w3.org/2002/12/cal/icaltzd#',
+						 jsonld => 'http://www.w3.org/ns/json-ld#',
 						 ldp => 'http://www.w3.org/ns/ldp#',
 						 ma => 'http://www.w3.org/ns/ma-ont#',
 						 oa => 'http://www.w3.org/ns/oa#',
