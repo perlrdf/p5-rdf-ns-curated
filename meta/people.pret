@@ -12,3 +12,6 @@ cpan:KJETILK
 
 result:user-Harald-Jörg :name  "Harald Jörg" .
 
+cpan:ZMUGHAL
+	:name "Zakariyya Mughal";
+	:page <https://metacpan.org/author/ZMUGHAL> .

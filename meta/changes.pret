@@ -1,5 +1,12 @@
 # This file acts as the project's changelog.
 
+`RDF-NS-Curated 1.006 cpan:KJETILK`
+	issued  2023-08-23;
+	changeset [
+		item [ label "Add JSON-LD namespace."@en ; a dcs:Addition ; dcs:thanks cpan:ZMUGHAL ];
+		item [ label "Add Github devops."@en ; a dcs:Update ; dcs:thanks cpan:ZMUGHAL ]
+	] .
+
 `RDF-NS-Curated 1.004 cpan:KJETILK`
 	issued  2019-11-21;
 	changeset [
