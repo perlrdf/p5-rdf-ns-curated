@@ -204,6 +204,7 @@ Kjetil Kjernsmo E<lt>kjetilk@cpan.orgE<gt>.
 =head1 CONTRIBUTORS
 
 Harald Jörg
+Zaki Mughal
 
 
 =head1 COPYRIGHT AND LICENCE
